@@ -34,6 +34,7 @@ app.post('/', function(req, res){
         client.say('#combot', reponame + ' ' + push.commits[i].message + ' - ' + push.commits[i].committer.name);
         
     }
+    res.send();
 });
 
 app.get('/', function(req, res){
