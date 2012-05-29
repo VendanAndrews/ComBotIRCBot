@@ -13,8 +13,8 @@ client.addListener('message', function (from, to, message) {
 var app = express.createServer();
 app.use(express.bodyParser());
 
-app.get('/', function(req, res){
-    console.log(req);
+app.post('/', function(req, res){
+    console.log(req.body.payload);
 });
 
 app.listen(process.env.PORT, '0.0.0.0');
