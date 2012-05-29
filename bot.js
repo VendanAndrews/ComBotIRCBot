@@ -11,7 +11,7 @@ app.use(express.bodyParser());
 app.post('/', function(req, res){
     var push = JSON.parse(req.body.payload);
     console.log(push);
-    var reponame = irc.colors.wrap('u000305', '[' + push.repository.name +']');
+    var reponame = irc.colors.wrap('\u000305', '[' + push.repository.name +']');
     //client.say('#combot', push.pusher.name + " pushed commits");
     client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
     for(var i in push.commits)
