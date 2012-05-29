@@ -11,13 +11,13 @@ app.use(express.bodyParser());
 app.post('/', function(req, res){
     var push = JSON.parse(req.body.payload);
     console.log(push);
-    var reponame = irc.colors.wrap(irc.colors.codes.dark_red, '[' + push.repository.name +']');
+    var reponame = irc.colors.wrap('u000305', '[' + push.repository.name +']');
     //client.say('#combot', push.pusher.name + " pushed commits");
     client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
     for(var i in push.commits)
     {
         //console.log(push.commits[i]);
-        client.say('#combot', reponame + ' ' + push.commits[i].message + ' - ' + push.commits[i].name);
+        client.say('#combot', reponame + ' ' + push.commits[i].message + ' - ' + push.commits[i].committer.name);
         
     }
 });
