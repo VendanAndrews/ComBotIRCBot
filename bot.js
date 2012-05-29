@@ -3,8 +3,13 @@ var express = require('express');
 
 var client = new irc.Client('irc.lavishsoft.com', 'ComBot', {
     channels: ['#combot'],
-    password: 'combotircbot'
-});
+    password: process.env.IRCPASSWORD,
+    autoConnect: false
+    });
+    
+setTimeout(function(){
+    client.connect();
+}, 15000);
 
 var app = express.createServer();
 app.use(express.bodyParser());
