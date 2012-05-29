@@ -13,6 +13,11 @@ app.post('/', function(req, res){
     console.log(push);
     //client.say('#combot', push.pusher.name + " pushed commits");
     console.log('[' + push.repository.name +'] ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
+    for(var commit in push.commits)
+    {
+        console.log('[' + push.repository.name +'] ' + commit.message + ' - ' + commit.committer);
+        
+    }
 });
 
 app.listen(process.env.PORT, '0.0.0.0');
