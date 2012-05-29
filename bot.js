@@ -1,22 +1,23 @@
-var ircLib = require('irc');
+var irc = require('irc');
 var express = require('express');
 
-/*var client = new ircLib.Client('irc.lavishsoft.com', 'ComBot', {
+var client = new irc.Client('irc.lavishsoft.com', 'ComBot', {
     channels: ['#combot'],
 });
-*/
+
 var app = express.createServer();
 app.use(express.bodyParser());
 
 app.post('/', function(req, res){
     var push = JSON.parse(req.body.payload);
     console.log(push);
+    var reponame = irc.colors.wrap(irc.colors.codes.dark_red, '[' + push.repository.name +']');
     //client.say('#combot', push.pusher.name + " pushed commits");
-    console.log('[' + push.repository.name +'] ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
+    client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
     for(var i in push.commits)
     {
-        console.log(push.commits[i]);
-        console.log('[' + push.repository.name +'] ' + push.commits[i].message + ' - ' + push.commits[i].committer);
+        //console.log(push.commits[i]);
+        client.say('#combot', reponame + ' ' + push.commits[i].message + ' - ' + push.commits[i].name);
         
     }
 });
