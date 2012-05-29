@@ -13,13 +13,33 @@ app.post('/', function(req, res){
     console.log(push);
     var reponame = irc.colors.wrap('dark_red', '[' + push.repository.name +']');
     //client.say('#combot', push.pusher.name + " pushed commits");
-    client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
+    var plural = '';
+    if(push.commits.length>1)
+    {
+        plural = 's';
+    }
+    var branch = push.ref.replace(/^refs\/heads\//,'');
+    if(branch=='')
+    {
+        client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commit' + plural);
+    }
+    else
+    {
+        client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commit' + plural + ' in ' + branch);
+        reponame = irc.colors.wrap('dark_red', '[' + push.repository.name + '/' + branch + ']');
+    }
     for(var i in push.commits)
     {
         //console.log(push.commits[i]);
         client.say('#combot', reponame + ' ' + push.commits[i].message + ' - ' + push.commits[i].committer.name);
         
     }
+});
+
+app.get('/', function(req, res){
+    
+   res.send('Bot Working'); 
+    
 });
 
 app.listen(process.env.PORT, '0.0.0.0');
