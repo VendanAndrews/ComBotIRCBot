@@ -14,7 +14,7 @@ var app = express.createServer();
 app.use(express.bodyParser());
 
 app.get('/', function(req, res){
-    console.log(req.body.payload);
+    console.log(req);
 });
 
 app.listen(process.env.PORT, '0.0.0.0');
