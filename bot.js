@@ -15,6 +15,7 @@ app.use(express.bodyParser());
 
 app.post('/', function(req, res){
     console.log(JSON.parse(req.body.payload));
+    
 });
 
 app.listen(process.env.PORT, '0.0.0.0');
