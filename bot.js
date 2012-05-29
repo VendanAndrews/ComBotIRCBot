@@ -10,6 +10,5 @@ client.addListener('message', function (from, to, message) {
 });
 
 http.createServer(function (req, res) {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end('Hello World\n');
+        console.log(req);
         }).listen(process.env.PORT, "0.0.0.0");
