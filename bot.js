@@ -5,6 +5,8 @@ var client = new irc.Client('irc.lavishsoft.com', 'ComBot', {
     channels: ['#combot'],
 });
 
+client.say('NickServe', 'IDENTIFY combotircbot');
+
 var app = express.createServer();
 app.use(express.bodyParser());
 
