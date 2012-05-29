@@ -15,6 +15,7 @@ app.post('/', function(req, res){
     console.log('[' + push.repository.name +'] ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
     for(var commit in push.commits)
     {
+        console.log(commit);
         console.log('[' + push.repository.name +'] ' + commit.message + ' - ' + commit.committer);
         
     }
