@@ -12,7 +12,7 @@ app.post('/', function(req, res){
     var push = JSON.parse(req.body.payload);
     console.log(push);
     //client.say('#combot', push.pusher.name + " pushed commits");
-    console.log('[' + push.repository.name +'] ' + push.pusher.name + ' pushed ' + push.commits.count() + ' new commits');
+    console.log('[' + push.repository.name +'] ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
 });
 
 app.listen(process.env.PORT, '0.0.0.0');
