@@ -13,10 +13,10 @@ app.post('/', function(req, res){
     console.log(push);
     //client.say('#combot', push.pusher.name + " pushed commits");
     console.log('[' + push.repository.name +'] ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commits');
-    for(var commit in push.commits)
+    for(var i in push.commits)
     {
-        console.log(commit);
-        console.log('[' + push.repository.name +'] ' + commit.message + ' - ' + commit.committer);
+        console.log(push.commits[i]);
+        console.log('[' + push.repository.name +'] ' + push.commits[i].message + ' - ' + push.commits[i].committer);
         
     }
 });
