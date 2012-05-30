@@ -32,7 +32,7 @@ app.post('/', function(req, res){
     else
     {
         client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commit' + plural + ' to ' + branch);
-        reponame = irc.colors.wrap('dark_red', '[' + push.repository.name + '/' + branch + ']');
+        reponame = irc.colors.wrap('dark_red', '[' + push.repository.name + '\\' + branch + ']');
     }
     for(var i in push.commits)
     {
