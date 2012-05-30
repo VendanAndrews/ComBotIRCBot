@@ -40,8 +40,12 @@ app.post('/', function(req, res){
         var lines = push.commits[i].message.split('\n');
         for(var line in lines)
         {
-            client.say('#combot', reponame + ' ' + lines[line] + ' - ' + push.commits[i].committer.name);
-            
+            if(line == lines.length)
+            {
+                client.say('#combot', reponame + ' ' + lines[line]);
+            }else{
+                client.say('#combot', reponame + ' ' + lines[line] + ' - ' + push.commits[i].committer.name);
+            }
         }
         
     }
