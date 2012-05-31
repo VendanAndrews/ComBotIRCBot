@@ -58,7 +58,7 @@ app.post('/', function(req, res){
         }
         else
         {
-            client.say('#combot', reponame + ' ' + lines[line] + ' - ' + push.commits[i].committer.name);
+            client.say('#combot', reponame + ' ' + lines[0] + ' - ' + push.commits[i].committer.name);
         }
         
     }
