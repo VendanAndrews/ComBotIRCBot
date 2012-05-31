@@ -46,7 +46,7 @@ app.post('/', function(req, res){
             }
             else
             {
-                client.say('#combot', reponame + ' ' + lines[line]);
+                client.say('#combot', reponame + '     ' + lines[line]);
             }
         }
         
