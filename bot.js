@@ -42,7 +42,11 @@ app.post('/', function(req, res){
         {
             if(line==lines.length)
             {
-                client.say('#combot', reponame + ' ' + lines[line] + ' - ' + push.commits[i].committer.name);
+                client.say('#combot', reponame + '     ' + lines[line] + ' - ' + push.commits[i].committer.name);
+            }
+            else if(line==0)
+            {
+                client.say('#combot', reponame + ' ' + lines[line]);
             }
             else
             {
