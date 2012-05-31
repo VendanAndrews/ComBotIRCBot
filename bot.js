@@ -38,7 +38,7 @@ app.post('/', function(req, res){
     {
         //console.log(push.commits[i]);
         var lines = push.commits[i].message.split('\n');
-        if(lines.length > 0)
+        if(lines.length > 1)
         {
             for(var line in lines)
             {
