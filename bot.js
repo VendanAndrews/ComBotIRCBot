@@ -64,7 +64,13 @@ app.post('/', function(req, res) {
 app.post('/issue', function(req, res) {
 	client.say('#combot', 'issue callback');
 
+	res.send();
+});
 
+app.get('/issue', function(req, res) {
+	
+	res.send(req.query["hub.challenge"]);
+	
 });
 
 
@@ -80,7 +86,8 @@ function registerIssuesHook(username, repo) {
 	var requestBody = [
 			"hub.callback=" + querystring.escape('http://combotircbot.herokuapp.com/issue'),
 			"hub.mode=" + querystring.escape('subscribe'),
-			"hub.topic=" + querystring.escape('https://github.com/' + username + '/' + repo + '/events/issues')
+			"hub.topic=" + querystring.escape('https://github.com/' + username + '/' + repo + '/events/issues'),
+			"hub.verify=sync"
 			].join("&");
 
 	var post_options = {
