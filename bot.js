@@ -92,9 +92,10 @@ function registerIssuesHook(username, repo) {
 			'Content-Length': post_data.length
 		}
 	};
+	
+	console.log(post_data);
 
 	var post_req = https.request(post_options, function(res) {
-		res.setEncoding('utf8');
 	});
 	post_req.write(post_data);
 	post_req.end();
