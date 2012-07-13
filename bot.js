@@ -73,7 +73,25 @@ app.post('/issue', function(req, res) {
 
 app.get('/issue', function(req, res) {
 	
-	res.send(req.query["hub.challenge"]);
+	
+	var query = {
+		"hub.mode": req.query["hub.mode"],
+		"hub.topic": req.query["hub.topic"],
+		"hub.challenge": req.query["hub.challenge"]
+	};
+	
+	var get_options = {
+		hostname: 'api.github.com',
+		port: 443,
+		path: '/hub?' + querystring.stringify(query),
+		method: 'GET'
+	};
+	
+	
+	https.get(get_options);
+	
+	
+	res.send();
 	
 });
 
