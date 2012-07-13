@@ -84,7 +84,7 @@ function registerIssuesHook(username, repo) {
 			].join("&");
 
 	var post_options = {
-		hostname: 'https://api.github.com',
+		hostname: 'api.github.com',
 		port: 443,
 		path: '/hub',
 		method: 'POST',
