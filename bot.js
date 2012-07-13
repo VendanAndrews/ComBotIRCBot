@@ -95,7 +95,6 @@ function registerIssuesHook(username, repo) {
 	};
 	
 	console.log(requestBody);
-	https.req
 	var post_req = https.request(post_options, function(res) {
 	});
 	post_req.write(requestBody);
