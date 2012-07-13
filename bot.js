@@ -79,7 +79,7 @@ function registerIssuesHook(username, repo) {
 	var post_data = querystring.stringify({
 		'hub.mode': 'subscribe',
 		'hub.topic': 'https://github.com/' + username + '/' + repo + '/events/issues',
-		'hub.callback': 'http://combotircbot.herokuapp.com/'
+		'hub.callback': 'http://combotircbot.herokuapp.com/issue'
 	});
 
 	var post_options = {
