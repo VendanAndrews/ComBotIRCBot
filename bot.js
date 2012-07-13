@@ -13,6 +13,10 @@ var client = new irc.Client('irc.lavishsoft.com', 'ComBot', {
 
 setTimeout(function() {
 	client.connect();
+	registerIssuesHook('Tehtsuo', 'Combot');
+	registerIssuesHook('VendanAndrews', 'CombotPatcher');
+	registerIssuesHook('VendanAndrews', 'GithubPatcher');
+	registerIssuesHook('VendanAndrews', 'CombotIRCBot');
 }, 15000);
 
 client.addListener('+mode', function(channel, by, mode, argument, message) {});
@@ -108,9 +112,5 @@ function registerIssuesHook(username, repo) {
 	post_req.end();
 }
 
-registerIssuesHook('Tehtsuo', 'Combot');
-registerIssuesHook('VendanAndrews', 'CombotPatcher');
-registerIssuesHook('VendanAndrews', 'GithubPatcher');
-registerIssuesHook('VendanAndrews', 'CombotIRCBot');
 
 app.listen(process.env.PORT, '0.0.0.0');
