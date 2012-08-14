@@ -31,7 +31,7 @@ app.post('/issue', function(req, res) {
 	res.send();
 	var info = JSON.parse(req.body.payload);
 	
-	var requestBody = "url=" + querystring.escape(info.issue.url);
+	var requestBody = "url=" + querystring.escape(info.issue.html_url);
 
 	var post_options = {
 		hostname: 'git.io',
@@ -45,7 +45,34 @@ app.post('/issue', function(req, res) {
 	};
 	
 	var post_req = http.request(post_options, function(res) {
-		client.say('Vendan', 'Issue ' + info.action + ': ' + info.issue.title + ' : ' + res.headers['location']);
+		client.say('Vendan', info.repository.name + ' issue ' + info.action + ': ' + info.issue.title + ' : ' + res.headers['location']);
+		
+	});
+	post_req.write(requestBody);
+	post_req.end();
+	
+	//http://git.io -F "url=https://github.com/..."
+});
+
+app.post('/issuecomment', function(req, res) {
+	res.send();
+	var info = JSON.parse(req.body.payload);
+	
+	var requestBody = "url=" + querystring.escape(info.comment.url);
+
+	var post_options = {
+		hostname: 'git.io',
+		port: 80,
+		path: '',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': requestBody.length
+		}
+	};
+	
+	var post_req = http.request(post_options, function(res) {
+		client.say('Vendan', info.repository.name + ' new comment on issue: ' + info.issue.title + ' : ' + res.headers['location']);
 		
 	});
 	post_req.write(requestBody);
@@ -132,6 +159,32 @@ function registerIssuesHook(username, repo) {
 			"hub.callback=" + querystring.escape('http://combotircbot.herokuapp.com/issue'),
 			"hub.mode=" + querystring.escape('subscribe'),
 			"hub.topic=" + querystring.escape('https://github.com/' + username + '/' + repo + '/events/issues')
+			].join("&");
+
+	var post_options = {
+		hostname: 'api.github.com',
+		port: 443,
+		path: '/hub',
+		method: 'POST',
+		auth: process.env.GITHUBAUTH,
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': requestBody.length
+		}
+	};
+	
+	var post_req = https.request(post_options, function(res) {
+	});
+	post_req.write(requestBody);
+	post_req.end();
+}
+
+function registerIssueCommentHook(username, repo) {
+
+	var requestBody = [
+			"hub.callback=" + querystring.escape('http://combotircbot.herokuapp.com/issuecomment'),
+			"hub.mode=" + querystring.escape('subscribe'),
+			"hub.topic=" + querystring.escape('https://github.com/' + username + '/' + repo + '/events/issue_comment')
 			].join("&");
 
 	var post_options = {
