@@ -26,6 +26,12 @@ client.addListener('+mode', function(channel, by, mode, argument, message) {});
 var app = express.createServer();
 app.use(express.bodyParser());
 
+app.post('/issue', function(req, res) {
+	client.say('#combot', 'issue callback');
+
+	res.send();
+});
+
 app.post('/', function(req, res) {
 	var push = JSON.parse(req.body.payload);
 	console.log(push);
@@ -67,12 +73,6 @@ app.post('/', function(req, res) {
 	res.send();
 });
 
-app.post('/issue', function(req, res) {
-	client.say('#combot', 'issue callback');
-
-	res.send();
-});
-
 app.get('/issue', function(req, res) {
 	
 	
@@ -110,8 +110,7 @@ function registerIssuesHook(username, repo) {
 	var requestBody = [
 			"hub.callback=" + querystring.escape('http://combotircbot.herokuapp.com/issue'),
 			"hub.mode=" + querystring.escape('subscribe'),
-			"hub.topic=" + querystring.escape('https://github.com/' + username + '/' + repo + '/events/issues'),
-			"hub.verify=sync"
+			"hub.topic=" + querystring.escape('https://github.com/' + username + '/' + repo + '/events/issues')
 			].join("&");
 
 	var post_options = {
