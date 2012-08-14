@@ -27,7 +27,7 @@ var app = express.createServer();
 app.use(express.bodyParser());
 
 app.post('/issue', function(req, res) {
-	client.say('#combot', 'issue callback');
+	client.say('Vendan', req.body.payload);
 
 	res.send();
 });
@@ -92,7 +92,6 @@ app.get('/issue', function(req, res) {
 	
 	https.get(get_options);
 	
-	client.say('Vendan', 'Hooking' + query);
 	res.send('Hooking');
 	
 });
@@ -127,7 +126,6 @@ function registerIssuesHook(username, repo) {
 	
 	var post_req = https.request(post_options, function(res) {
 	});
-	client.say('Vendan', 'Asking for hook ' + requestBody);
 	post_req.write(requestBody);
 	post_req.end();
 }
