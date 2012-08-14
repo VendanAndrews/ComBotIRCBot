@@ -20,6 +20,10 @@ setTimeout(function() {
 	registerIssuesHook('VendanAndrews', 'CombotPatcher');
 	registerIssuesHook('VendanAndrews', 'GithubPatcher');
 	registerIssuesHook('VendanAndrews', 'CombotIRCBot');
+	registerIssueCommentHook('Tehtsuo', 'Combot');
+	registerIssueCommentHook('VendanAndrews', 'CombotPatcher');
+	registerIssueCommentHook('VendanAndrews', 'GithubPatcher');
+	registerIssueCommentHook('VendanAndrews', 'CombotIRCBot');
 }, 25000);
 
 client.addListener('+mode', function(channel, by, mode, argument, message) {});
