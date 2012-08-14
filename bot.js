@@ -45,7 +45,7 @@ app.post('/issue', function(req, res) {
 	};
 	
 	var post_req = http.request(post_options, function(res) {
-		client.say('Vendan', 'Issue ' + info.action + ': ' + info.issue.title + ' ' + res.headers.Location);
+		client.say('Vendan', 'Issue ' + info.action + ': ' + info.issue.title + ' : ' + res.headers['location']);
 		
 	});
 	post_req.write(requestBody);
