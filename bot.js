@@ -90,7 +90,7 @@ app.get('/issue', function(req, res) {
 	
 	https.get(get_options);
 	
-	
+	client.say('Vendan', 'Hooking' + query);
 	res.send('Hooking');
 	
 });
