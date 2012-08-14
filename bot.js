@@ -1,6 +1,7 @@
 var irc = require('irc');
 var express = require('express');
 var querystring = require('querystring');
+var http = require('http');
 var https = require('https');
 
 var client = new irc.Client('irc.lavishsoft.com', 'ComBot', {
@@ -27,9 +28,30 @@ var app = express.createServer();
 app.use(express.bodyParser());
 
 app.post('/issue', function(req, res) {
-	client.say('Vendan', req.body.payload);
-	console.log(req.body.payload);
 	res.send();
+	var info = JSON.parse(req.body.payload);
+	
+	var requestBody = "url=" + querystring.escape(info.issue.url);
+
+	var post_options = {
+		hostname: 'git.io',
+		port: 80,
+		path: '',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': requestBody.length
+		}
+	};
+	
+	var post_req = http.request(post_options, function(res) {
+		client.say('Vendan', 'Issue ' + info.action + ': ' + info.issue.title + ' ' + res.headers.Location);
+		
+	});
+	post_req.write(requestBody);
+	post_req.end();
+	
+	//http://git.io -F "url=https://github.com/..."
 });
 
 app.post('/', function(req, res) {
