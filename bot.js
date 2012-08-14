@@ -91,7 +91,7 @@ app.get('/issue', function(req, res) {
 	https.get(get_options);
 	
 	
-	res.send();
+	res.send('Hooking');
 	
 });
 
