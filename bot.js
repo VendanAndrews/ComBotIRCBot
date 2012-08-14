@@ -118,6 +118,7 @@ function registerIssuesHook(username, repo) {
 		port: 443,
 		path: '/hub',
 		method: 'POST',
+		auth: process.env.GITHUBAUTH,
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'Content-Length': requestBody.length
