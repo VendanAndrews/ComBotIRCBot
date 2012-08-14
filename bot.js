@@ -62,7 +62,7 @@ app.post('/issuecomment', function(req, res) {
 	res.send();
 	var info = JSON.parse(req.body.payload);
 	
-	var requestBody = "url=" + querystring.escape(info.comment.url);
+	var requestBody = "url=" + querystring.escape(info.issue.html_url);
 
 	var post_options = {
 		hostname: 'git.io',
