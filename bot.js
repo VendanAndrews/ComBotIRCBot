@@ -28,7 +28,7 @@ app.use(express.bodyParser());
 
 app.post('/issue', function(req, res) {
 	client.say('Vendan', req.body.payload);
-
+	console.log(req.body.payload);
 	res.send();
 });
 
