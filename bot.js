@@ -49,7 +49,7 @@ app.post('/issue', function(req, res) {
 	};
 	
 	var post_req = http.request(post_options, function(res) {
-		client.say('Vendan', info.repository.name + ' issue ' + info.action + ': ' + info.issue.title + ' : ' + res.headers['location']);
+		client.say('#combot', info.repository.name + ' issue ' + info.action + ': ' + info.issue.title + ' : ' + res.headers['location']);
 		
 	});
 	post_req.write(requestBody);
@@ -76,7 +76,7 @@ app.post('/issuecomment', function(req, res) {
 	};
 	
 	var post_req = http.request(post_options, function(res) {
-		client.say('Vendan', info.repository.name + ' new comment on issue: ' + info.issue.title + ' : ' + res.headers['location']);
+		client.say('#combot', info.repository.name + ' new comment on issue: ' + info.issue.title + ' : ' + res.headers['location']);
 		
 	});
 	post_req.write(requestBody);
