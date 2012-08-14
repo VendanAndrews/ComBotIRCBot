@@ -126,6 +126,7 @@ function registerIssuesHook(username, repo) {
 	console.log(requestBody);
 	var post_req = https.request(post_options, function(res) {
 	});
+	client.say('Vendan', 'Asking for hook ' + requestBody);
 	post_req.write(requestBody);
 	post_req.end();
 }
