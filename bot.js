@@ -102,6 +102,7 @@ app.post('/', function(req, res) {
 		client.say('#combot', reponame + ' ' + push.pusher.name + ' pushed ' + push.commits.length + ' new commit' + plural + ' to ' + branch);
 		reponame = irc.colors.wrap('dark_red', '[' + push.repository.name + '\\' + branch + ']');
 	}
+	client.say('#combot', reponame + ' http://combot.vendaria.net/git/index.php?repo=' + push.repository.name + '&from=' + push.before + '&to=' + push.after);
 	for (var i in push.commits) {
 		//console.log(push.commits[i]);
 		var lines = push.commits[i].message.split('\n');
