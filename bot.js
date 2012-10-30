@@ -123,7 +123,7 @@ app.post('/', function(req, res) {
 		}
 
 	}
-	client.say('#combot', reponame + ' http://combot.vendaria.net/git/index.php?repo=' + push.repository.name + '&from=' + push.before + '&to=' + push.after);
+	client.say('#combot', reponame + ' http://combot.vendaria.net/git/index.php?repo=' + push.repository.name + '&from=' + push.commits[0].id + '&to=' + push.after);
 	res.send();
 });
 
