@@ -210,5 +210,11 @@ function registerIssueCommentHook(username, repo) {
 	post_req.end();
 }
 
+client.addListener('pm', function (from, message) {
+    if(from == 'Vendan' || from == 'Teht')
+		{
+			client.say('#combot', message);
+		}
+});
 
 app.listen(process.env.PORT, process.env.IP);
